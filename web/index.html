@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var stop = 0;
+
+    function getMessage() {
+        $.post("echo",
+            {
+                content: "hello world"
+            },
+            function (message) {
+                $("p").append(message);
+            });
+        AutoUpdContent();
+    }
+
+    function AutoUpdContent() {
+        console.log("auto!")
+        if(stop === 0) setTimeout(getMessage, 1000);
+    }
+
+    $(document).ready(function(){
+        $("#btn1").click(function(){
+            alert("Text");
+            stop = 1;
+        });
+
+    });
+
+    window.onload = getMessage();
+
+</script>
+
+
+<body>
+<button id="btn1">STOP</button>
+<br>
+<p>
+    the content <br>
+</p>
+
+
+</body>
+</html>
