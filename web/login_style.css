@@ -1,7 +1,12 @@
-#wetalk{
+#wetalk {
     font-size: 64px;
 }
 
-.login_input{
+.login_input {
     margin-right: 10px;
+}
+
+.box {
+    display: inline-block;
+    vertical-align: middle;
 }

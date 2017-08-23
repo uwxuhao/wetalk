@@ -1,0 +1,18 @@
+textarea {
+    resize: none;
+}
+
+#chat_content{
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+#send_form{
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+.box{
+    display: inline-block;
+    vertical-align: bottom;
+}
