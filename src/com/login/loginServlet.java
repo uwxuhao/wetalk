@@ -22,6 +22,13 @@ public class loginServlet extends HttpServlet {
             out.print("ok");
             HttpSession session = request.getSession();
             session.setAttribute("first_name", "Hao");
+            session.setAttribute("user_name", username);
+        }
+        else if(username.equals("test") && password.equals("asdf95")){
+            out.print("ok");
+            HttpSession session = request.getSession();
+            session.setAttribute("first_name", "Tester");
+            session.setAttribute("user_name", username);
         }
 
         else{
