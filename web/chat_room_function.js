@@ -32,7 +32,9 @@ function send_message() {
         }
     });
     $("#text_input").val('');
-    $("#chat_content").append(message.from+": "+message.content+ "\n");
+    var append_text = message.from + ": " + message.content + "\n";
+    var chat_content = $("#chat_content");
+    chat_content.text(chat_content.text() + append_text);
 }
 
 function enter_press(e) {
