@@ -28,4 +28,14 @@
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>Chat</servlet-name>
+        <servlet-class>com.chat.chatServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Chat</servlet-name>
+        <url-pattern>/chat</url-pattern>
+    </servlet-mapping>
+
 </web-app>

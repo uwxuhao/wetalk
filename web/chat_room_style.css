@@ -2,7 +2,7 @@ textarea {
     resize: none;
 }
 
-#chat_content{
+#chat_area{
     margin-top: 1%;
     margin-left: 5%;
 }
