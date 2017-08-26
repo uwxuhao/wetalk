@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 function initialize() {
     if (user_name == "hao") {
-        other_user_name = "test";
+        other_user_name = "gpc";
     }
     else {
         other_user_name = "hao";

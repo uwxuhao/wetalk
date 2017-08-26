@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $("#button_login").click(verify_login)
     $("#password_input").bind("keypress", {}, key_press);
+    $("#username_input").bind("keypress", {}, key_press);
 })
 
 function key_press(e) {
@@ -12,10 +13,16 @@ function key_press(e) {
 }
 
 function verify_login() {
+    var username_input = $("#username_input").val();
+    var password_input = $("#password_input").val();
+    if (username_input.length === 0 || password_input.length === 0) {
+        alert("UserName and Password cannot be empty!");
+        return;
+    }
     $.post("loginServlet",
         {
-            username: $("#username_input").val(),
-            password: $("#password_input").val(),
+            username: username_input,
+            password: password_input,
         },
         function (message) {
             console.log(message);

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -15,7 +14,6 @@
 
 </head>
 <body>
-<%--<h1>Welcome <%= session.getAttribute("first_name")%></h1>--%>
 
 <div id="chat_area">
     <textarea rows="30" cols="200" readonly id="chat_content"></textarea>
@@ -23,13 +21,18 @@
 
 <div id="send_form">
     <div class="box">
-        <textarea rows="6" cols="190" id="text_input"></textarea>
+        <textarea rows="6" cols="190" id="text_input" autofocus></textarea>
     </div>
     <div class="box">
         <button class="btn btn-primary"><i class="fa fa-paper-plane" id="button_send">Send</i></button>
     </div>
 
 </div>
+
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setDateHeader("Expires", 0);
+%>
 
 </body>
 </html>
