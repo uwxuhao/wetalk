@@ -12,11 +12,8 @@ import java.io.PrintWriter;
 @WebServlet(name = "loginServlet")
 public class loginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("post");
         String username = (String) request.getParameter("username");
         String password = (String) request.getParameter("password");
-        System.out.println(username);
-        System.out.println(password);
         PrintWriter out = response.getWriter();
         if (username.equals("hao") && password.equals("asdf95")){
             out.print("ok");
