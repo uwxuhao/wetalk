@@ -11,23 +11,31 @@
         var user_name = '<%=session.getAttribute("user_name")%>';
     </script>
     <script type="text/javascript" src="chat_room_function.js"></script>
-
 </head>
 <body>
 
-<div id="chat_area">
-    <textarea rows="30" cols="200" readonly id="chat_content"></textarea>
+
+<div id="contact_list">
+    <jsp:include page="contact_list.jsp" />
 </div>
 
-<div id="send_form">
-    <div class="box">
-        <textarea rows="6" cols="190" id="text_input" autofocus></textarea>
+<div id="chat">
+    <div id="chat_area">
+        <textarea rows="30" cols="200" readonly id="chat_content"></textarea>
     </div>
-    <div class="box">
-        <button class="btn btn-primary"><i class="fa fa-paper-plane" id="button_send">Send</i></button>
+
+    <div id="send_form">
+        <div class="box">
+            <textarea rows="6" cols="190" id="text_input" autofocus></textarea>
+        </div>
+        <div class="box">
+            <button class="btn btn-primary"><i class="fa fa-paper-plane" id="button_send">Send</i></button>
+        </div>
+
     </div>
 
 </div>
+
 
 <%
     response.setHeader("Cache-Control", "no-cache");

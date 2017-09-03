@@ -17,4 +17,14 @@ textarea {
     vertical-align: bottom;
 }
 
+#chat{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#contact_list{
+    display: inline-block;
+    vertical-align: top;
+}
+
 

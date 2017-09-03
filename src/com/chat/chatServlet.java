@@ -18,7 +18,6 @@ public class chatServlet extends HttpServlet {
     Map<String, List<conversationStruct>> conversions = new HashMap<>();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("post");
         String type = request.getParameter("post_type");
         String from = request.getParameter("from");
         String to = request.getParameter("to");

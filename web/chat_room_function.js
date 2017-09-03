@@ -7,7 +7,7 @@ $(document).ready(function () {
     $("#button_send").click(send_message)
     $("#text_input").bind("keypress", {}, enter_press);
     get_message();
-})
+});
 
 
 function initialize() {

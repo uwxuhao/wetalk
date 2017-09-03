@@ -40,4 +40,15 @@
 
 
 
+    <servlet>
+        <servlet-name>Contact</servlet-name>
+        <servlet-class>com.contact.contactServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Contact</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+
+
+
 </web-app>
