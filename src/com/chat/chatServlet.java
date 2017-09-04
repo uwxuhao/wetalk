@@ -27,6 +27,8 @@ public class chatServlet extends HttpServlet {
         else
             key = to + "," + from;
 
+
+
         if (type.equals("get_message")) {
             PrintWriter out = response.getWriter();
             if (conversions.containsKey(key)) {
@@ -45,6 +47,8 @@ public class chatServlet extends HttpServlet {
             } else {
                 conversions.get(key).add(conversion);
             }
+
+
         } else if (type.equals("initialize")) {
             //TODO
         }

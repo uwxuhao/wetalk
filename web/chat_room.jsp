@@ -15,7 +15,7 @@
 <body>
 
 
-<div id="contact_list">
+<div id="contact">
     <jsp:include page="contact_list.jsp" />
 </div>
 

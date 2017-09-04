@@ -17,9 +17,8 @@
     <script type="text/javascript" src="contact_list_function.js"></script>
 
 </head>
-<body id="contact_list_area">
 
-<p>
+<p id="test">
     My friends
 </p>
 
@@ -28,5 +27,4 @@
 </ul>
 
 
-</body>
 </html>
