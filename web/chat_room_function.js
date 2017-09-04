@@ -72,13 +72,11 @@ function get_message() {
             }
 
         });
-    }
-    AutoUpdContent();
-}
 
-function AutoUpdContent() {
+    }
     setTimeout(get_message, 850);
 }
+
 
 function enter_press(e) {
     var code = (e.keyCode ? e.keyCode : e.which);

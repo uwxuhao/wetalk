@@ -1,5 +1,7 @@
 package com.chat;
 
+import com.google.gson.Gson;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import java.util.Map;
 public class chatServlet extends HttpServlet {
 
     Map<String, List<conversationStruct>> conversions = new HashMap<>();
+    Map<String, Map<String, String>> unread = new HashMap<>();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("post_type");
@@ -47,10 +50,25 @@ public class chatServlet extends HttpServlet {
                 conversions.get(key).add(conversion);
             }
 
+            // add to the unread map
+            if (!unread.containsKey(to)) {
+                Map<String, String> message_count = new HashMap<>();
+                message_count.put(from, "1");
+                unread.put(to, message_count);
+            } else {
+                Map<String, String> message_count = unread.get(to);
+                if (!message_count.containsKey(from))
+                    message_count.put(from, "1");
+                else
+                    message_count.put(from, String.valueOf(Integer.valueOf(message_count.get(from)) + 1));
+            }
 
-        } else if (type.equals("check_other_contact")) {
-            
 
+        } else if (type.equals("check_unread")) {
+            String unreadJson = new Gson().toJson(unread.get(to));
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(unreadJson);
         } else if (type.equals("initialize")) {
             //TODO
         }
