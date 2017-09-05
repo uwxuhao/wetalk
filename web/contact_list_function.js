@@ -4,6 +4,7 @@ $(document).ready(function () {
 });
 
 var contacts = [];
+var read = 0;
 
 function get_contact_list() {
     console.log(user_name);
@@ -38,9 +39,32 @@ function get_unread_message() {
             to: user_name
         },
         success: function (unreadJson) {
+            var unread_pair = {};
             $.each(unreadJson, function (key, value) {
                 console.log(key + ": " + value);
+                unread_pair[key] = value;
             })
+
+            $(".contact_user_name").each(
+                function () {
+                    var name = $(this).find(".name").text();
+                    if (name in unread_pair) {
+                        var total_count = unread_pair[name];
+                        if ($(this).css("font-weight") === "bold") {
+                            $(this).find(".count").text("");
+                            read = total_count;
+                            return;
+                        }
+                        if (total_count > read) {
+                            var count = parseInt(total_count) - read;
+                        }
+                        if (count > 0) {
+                            $(this).find(".count").text("  " + count.toString());
+                        }
+                    }
+
+                }
+            )
         }
     });
     setTimeout(get_unread_message, 1500);

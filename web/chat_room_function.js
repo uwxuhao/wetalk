@@ -10,6 +10,7 @@ $(document).ready(function () {
     $(document).on('click', '.contact_user_name', function () {
         $(".contact_user_name").css("font-weight", "normal");
         $(this).css("font-weight", "bolder");
+        $(this).find(".count").text("");
         if (other_user_name !== $(this).find(".name").text()) {
             other_user_name = $(this).find(".name").text();
             switch_user();
