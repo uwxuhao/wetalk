@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -33,12 +34,23 @@ public class contactServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = (String) request.getParameter("username");
         System.out.println("username: " + username);
-        List<String> contactList = dbUtil.getContactList(username);
-        System.out.println(contactList);
-        String contactJson = new Gson().toJson(contactList);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(contactJson);
+        String type = (String) request.getParameter("type");
+
+        if(type.equals("get contact list")){
+            List<String> contactList = dbUtil.getContactList(username);
+            System.out.println(contactList);
+            String contactJson = new Gson().toJson(contactList);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(contactJson);
+        }
+        else if(type.equals("add contact")){
+            String contactUserName = (String) request.getParameter("contact");
+            String result = dbUtil.addContact(username, contactUserName);
+            PrintWriter out = response.getWriter();
+            out.print(result);
+        }
+
     }
 
 }

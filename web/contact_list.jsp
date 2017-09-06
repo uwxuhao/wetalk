@@ -26,5 +26,6 @@
 
 </ul>
 
+<button type="button" id="add_contact">Add Contact</button>
 
 </html>

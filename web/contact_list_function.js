@@ -1,21 +1,23 @@
 $(document).ready(function () {
     get_contact_list();
     get_unread_message();
+    $("#add_contact").click(add);
 });
 
-var contacts = [];
 var read = 0;
 
 function get_contact_list() {
     console.log(user_name);
+    var contacts = [];
     $.ajax({
             url: '/contact',
             type: 'post',
             data: {
+                type: "get contact list",
                 username: user_name
             },
             success: function (contactJson) {
-
+                $("#contact_list").empty();
                 $.each(contactJson, function (index, item) {
                     contacts.push("<li class='contact_user_name'>" +
                         "<span class='name'>" + item + "</span>" +
@@ -26,6 +28,28 @@ function get_contact_list() {
             }
         }
     )
+}
+
+function add() {
+    var contact_username = prompt("Please enter the username");
+    if(contact_username!=null){
+        $.ajax({
+            url: '/contact',
+            type: 'post',
+            data: {
+                username: user_name,
+                contact: contact_username,
+                type: "add contact"
+            },
+            success: function (message) {
+                alert(message);
+                if(message === "Success"){
+                    get_contact_list();
+                }
+            }
+
+        });
+    }
 }
 
 
@@ -69,3 +93,4 @@ function get_unread_message() {
     });
     setTimeout(get_unread_message, 1500);
 }
+
