@@ -4,10 +4,9 @@ $(document).ready(function () {
     $("#add_contact").click(add);
 });
 
-var read = 0;
+var read_pair = {};
 
 function get_contact_list() {
-    console.log(user_name);
     var contacts = [];
     $.ajax({
             url: '/contact',
@@ -32,7 +31,7 @@ function get_contact_list() {
 
 function add() {
     var contact_username = prompt("Please enter the username");
-    if(contact_username!=null){
+    if (contact_username != null) {
         $.ajax({
             url: '/contact',
             type: 'post',
@@ -43,8 +42,11 @@ function add() {
             },
             success: function (message) {
                 alert(message);
-                if(message === "Success"){
+                if (message === "Success") {
                     get_contact_list();
+                }
+                else {
+                    // TODO add contact failure
                 }
             }
 
@@ -66,27 +68,31 @@ function get_unread_message() {
             var unread_pair = {};
             $.each(unreadJson, function (key, value) {
                 console.log(key + ": " + value);
-                unread_pair[key] = value;
-            })
+                unread_pair[key] = parseInt(value);
+            });
 
             $(".contact_user_name").each(
                 function () {
                     var name = $(this).find(".name").text();
                     if (name in unread_pair) {
-                        var total_count = unread_pair[name];
+                        if (!(name in read_pair)) {
+                            read_pair[name] = 0;
+                        }
+                        // check whether the contact is focused on
                         if ($(this).css("font-weight") === "bold") {
                             $(this).find(".count").text("");
-                            read = total_count;
-                            return;
+                            read_pair[name] = unread_pair[name];
                         }
-                        if (total_count > read) {
-                            var count = parseInt(total_count) - read;
-                        }
-                        if (count > 0) {
-                            $(this).find(".count").text("  " + count.toString());
+                        else {
+                            var count = 0;
+                            if (unread_pair[name] > read_pair[name]) {
+                                count = unread_pair[name] - read_pair[name];
+                            }
+                            if (count > 0) {
+                                $(this).find(".count").text("  " + count.toString());
+                            }
                         }
                     }
-
                 }
             )
         }

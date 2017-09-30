@@ -3,7 +3,7 @@ var other_user_name;
 
 $(document).ready(function () {
     initialize();
-    $("#button_send").click(send_message)
+    $("#button_send").click(send_message);
     $("#text_input").bind("keypress", {}, enter_press);
     get_message();
 
@@ -29,7 +29,6 @@ function initialize() {
 function send_message() {
     var chat_content = $("#text_input").val();
     if (chat_content.length != 0 && other_user_name.length != 0) {
-        console.log("send message");
         var message = {
             from: user_name,
             to: other_user_name,
@@ -52,12 +51,11 @@ function send_message() {
 
 
 function get_message() {
-    if (other_user_name.length != 0) {
-        console.log("get_message");
+    if (other_user_name.length !== 0) {
         var message = {
             from: user_name,
             to: other_user_name,
-        }
+        };
         $.ajax({
             url: '/chat',
             type: 'post',

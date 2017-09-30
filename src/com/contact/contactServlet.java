@@ -35,7 +35,6 @@ public class contactServlet extends HttpServlet {
         String username = (String) request.getParameter("username");
         System.out.println("username: " + username);
         String type = (String) request.getParameter("type");
-
         if(type.equals("get contact list")){
             List<String> contactList = dbUtil.getContactList(username);
             System.out.println(contactList);

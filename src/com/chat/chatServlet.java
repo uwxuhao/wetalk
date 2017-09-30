@@ -62,8 +62,6 @@ public class chatServlet extends HttpServlet {
                 else
                     message_count.put(from, String.valueOf(Integer.valueOf(message_count.get(from)) + 1));
             }
-
-
         } else if (type.equals("check_unread")) {
             String unreadJson = new Gson().toJson(unread.get(to));
             response.setContentType("application/json");
