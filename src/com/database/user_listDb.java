@@ -13,8 +13,30 @@ public class user_listDb {
         this.dataSource = dataSource;
     }
 
+    public void storeHistory(String user1, String user2, String content) {
+        Connection conn = null;
+        Statement stat = null;
+        ResultSet rs = null;
+        try {
+            conn = dataSource.getConnection();
+            String sql = "UPDATE "+ userRelationshipTable +" SET chat_history = " +
+                    "CONCAT(IFNULL(chat_history, ''), ?) " +
+                    "WHERE user1 = ? AND user2 = ? OR user1 = ? AND user2 = ?";
+            PreparedStatement updateStat = conn.prepareStatement(sql);
+            updateStat.setString(1, content+"\n");
+            updateStat.setString(2, user1);
+            updateStat.setString(3, user2);
+            updateStat.setString(4, user2);
+            updateStat.setString(5, user1);
+            System.out.println(updateStat.toString());
+            updateStat.execute();
+        } catch (SQLException e) {
+            System.out.println("error in sql");
+            e.printStackTrace();
+        }
+    }
+
     public List<String> getContactList(String userName) {
-        System.out.println("userName: " + userName);
         Connection conn = null;
         Statement stat = null;
         ResultSet rs = null;
@@ -60,7 +82,6 @@ public class user_listDb {
 
                     "user1 =\"" + contactUserName + "\" AND " +
                     "user2 =\"" + self + "\"";
-            System.out.println(sql);
             stat = conn.createStatement();
             rs = stat.executeQuery(sql);
             if (rs.next()) {

@@ -33,11 +33,9 @@ public class contactServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = (String) request.getParameter("username");
-        System.out.println("username: " + username);
         String type = (String) request.getParameter("type");
         if(type.equals("get contact list")){
             List<String> contactList = dbUtil.getContactList(username);
-            System.out.println(contactList);
             String contactJson = new Gson().toJson(contactList);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
